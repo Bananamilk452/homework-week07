@@ -67,4 +67,19 @@ class _Time extends StatelessWidget {
     return Column(  // 3 시간을 위에서 아래로 배치
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        
+                Text(
+          // 숫자가 두 자릿수가 안 되면 0으로 채워주가
+          '${startTime.toString().padLeft(2, '0')}:00',
+          style: textStyle,
+        ),
+        Text(
+          // 숫자가 두 자릿수가 안 되면 0으로 채워주가
+          '${endTime.toString().padLeft(2, '0')}:00',
+          style: textStyle.copyWith(
+            fontSize: 10.07
+          ),
+        )
+      ],
+    );
+  }
+}
