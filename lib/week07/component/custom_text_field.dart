@@ -30,7 +30,9 @@ class CustomTextField extends StatelessWidget {
         ),
         Expanded(
           flex: isTime ? 0 : 1, // 1
-          child
+          child: TextFormField( // 1 폼 안에서 텍스트 필드를 쓸 때 사용
+          
+          )
         )
       ],
     );
