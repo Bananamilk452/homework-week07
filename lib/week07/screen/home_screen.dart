@@ -64,4 +64,29 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             SizedBox(height: 8.0),
-            
+            Expanded( // 1 남는 공간을 모두 차지하기
+              // 2 일정 정보가 Stream으로 제공되기 때문에 StreamBuilder 사용
+              child: StreamBuilder<List<Schedule>>(
+                stream: GetIt.I<LocalDatabase>().watchSchedules(selectedDate),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) { // 3 데이터가 없을 때
+                    return Container();
+                  }
+
+                  // 4 화면에 보이는 값들만 렌더링하는 리스트
+                  return ListView.builder(
+                    // 리스트에 입력할 값들의 총 갯수
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      // 6 현재 index에 해당되는 일정
+                      final schedule = snapshot.data![index];
+                      return Dismissible(
+                        key: ObjectKey(schedule.id), // 1 유니크한 키값
+                        // 2 일기 방향 (왼쪽에서 오른쪽으로)
+                        direction: DismissDirection.startToEnd,
+                        // 3 밀기 했을 때 실행할 함수
+                        onDismissed: (DismissDirection direction) {
+                          GetIt.I<LocalDatabase>()
+                            .removeSchedule(schedule.id);
+                        },
+                        
