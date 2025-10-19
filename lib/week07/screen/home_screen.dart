@@ -14,3 +14,29 @@ class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _HomeScreenState();
 }
+
+class _HomeScreenState extends State<HomeScreen> {
+  DateTime selectedDate = DateTime.utc( // 2 선택된 날짜를 관리할 변수
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day,
+  );
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: FloatingActionButton( // 1 새 일정 버튼
+        backgroundColor: PRIMARY_COLOR,
+        onPressed: () {
+          showModalBottomSheet( // 2 BottomSheet 열기
+            context: context,
+            isDismissible: true, // 3 배경 탭했을 때 BottomSheet 닫기
+            builder: (_) => ScheduleBottomSheet(
+              selectedDate: selectedDate, // 선택된 날짜 (selectedDate) 넘겨주기
+            ),
+            // BottomSheet의 높이를 화면 최대 높이로
+            // 정의하고 스크롤 가능하게 변경
+            isScrollControlled: true,
+          );
+        },
+        
