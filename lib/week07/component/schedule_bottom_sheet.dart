@@ -2,6 +2,7 @@ import 'package:drift/drift.dart' hide Column;
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:myapp/week07/component/custom_text_field.dart';
+import 'package:myapp/week07/const/colors.dart';
 import 'package:myapp/week07/database/drift_database.dart';
 
 class ScheduleBottomSheet extends StatefulWidget {
@@ -95,19 +96,40 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
                         validator: timeValidator,
                       ),
                     ),
-                    const SizedBox(width: 16.0)
+                    const SizedBox(width: 16.0),
                     Expanded(
                       child: CustomTextField(
-                        label: '시작 시간',
+                        label: '종료 시간',
                         isTime: true,
                         onSaved: (String? val) {
-                          startTime = int.parse(val!);
+                          endTime = int.parse(val!);
                         },
                         validator: timeValidator,
                       ),
                     ),
-                    const SizedBox(width: 16.0)
                   ],
+                ),
+                const SizedBox(width: 8.0),
+                Expanded(
+                  child: CustomTextField(
+                    label: '내용',
+                    isTime: false,
+                    onSaved: (String? val) {
+                      content = val;
+                    },
+                    validator: contentValidator,
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: onSavePressed,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: PRIMARY_COLOR
+                    ),
+                    child: Text('저장')
+                  ),
                 )
               ]
             ),
