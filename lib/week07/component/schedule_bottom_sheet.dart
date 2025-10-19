@@ -1,4 +1,4 @@
-import 'package:drift/drift.dart';
+import 'package:drift/drift.dart' hide Column;
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:myapp/week07/database/drift_database.dart';
@@ -83,7 +83,7 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
             child: Column(
               children: [
                 Row(
-                  
+
                 )
               ]
             ),
