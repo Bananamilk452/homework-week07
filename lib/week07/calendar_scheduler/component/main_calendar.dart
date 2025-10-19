@@ -12,5 +12,27 @@ class MainCalendar extends StatelessWidget {
     required this.selectedDate
   });
 
-
+  @override
+  Widget build(BuildContext context) {
+    return TableCalendar(
+      locale: 'ko_kr', // 한국어로 언어 변경
+      onDaySelected: onDaySelected,
+      // 3 날짜 선택 시 실행할 함수
+      selectedDayPredicate: (date) => // 4 선택된 날짜를 구분할 로직
+        date.year == selectedDate.year &&
+        date.month == selectedDate.month &&
+        date.day == selectedDate.day,
+      firstDay: DateTime(1800, 1, 1), // 1 첫째 날
+      lastDay: DateTime(3000, 1, 1),  // 2 마지막 날
+      focusedDay: DateTime.now(),     // 3 화면에 보여지는 날
+      headerStyle: HeaderStyle(     // 1 달력 최상단 스타일
+        titleCentered: true,        // 제목 중앙에 위치하기
+        formatButtonVisible: false,  // 달력 크기 선택 옵션 없애기
+        titleTextStyle: TextStyle(  // 제목 글꼴
+          fontWeight: FontWeight.w700,
+          fontSize: 16.0,
+        ),
+      ),
+    );
+  }
 }
