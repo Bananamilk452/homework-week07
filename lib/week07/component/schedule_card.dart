@@ -56,3 +56,15 @@ class _Time extends StatelessWidget {
     Key? key
   }) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    final textStyle = TextStyle(
+      fontWeight: FontWeight.w600,
+      color: PRIMARY_COLOR,
+      fontSize: 16.0
+    );
+
+    return Column(  // 3 시간을 위에서 아래로 배치
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        
