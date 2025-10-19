@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:myapp/week07/const/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
@@ -11,6 +12,27 @@ class CustomTextField extends StatelessWidget {
     required this.label,
     required this.isTime,
     required this.onSaved,
-    required this.validator
-  })
+    required this.validator,
+    Key? key
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column( // 2 세로로 텍스트와 텍스트 필드 배치
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            color: PRIMARY_COLOR,
+            fontWeight: FontWeight.w600
+          ),
+        ),
+        Expanded(
+          flex: isTime ? 0 : 1, // 1
+          child
+        )
+      ],
+    );
+  }
 }
