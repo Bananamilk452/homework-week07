@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart' hide Column;
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:myapp/week07/component/custom_text_field.dart';
 import 'package:myapp/week07/database/drift_database.dart';
 
 class ScheduleBottomSheet extends StatefulWidget {
@@ -83,7 +84,30 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
             child: Column(
               children: [
                 Row(
-
+                  children: [
+                    Expanded(
+                      child: CustomTextField(
+                        label: '시작 시간',
+                        isTime: true,
+                        onSaved: (String? val) {
+                          startTime = int.parse(val!);
+                        },
+                        validator: timeValidator,
+                      ),
+                    ),
+                    const SizedBox(width: 16.0)
+                    Expanded(
+                      child: CustomTextField(
+                        label: '시작 시간',
+                        isTime: true,
+                        onSaved: (String? val) {
+                          startTime = int.parse(val!);
+                        },
+                        validator: timeValidator,
+                      ),
+                    ),
+                    const SizedBox(width: 16.0)
+                  ],
                 )
               ]
             ),
