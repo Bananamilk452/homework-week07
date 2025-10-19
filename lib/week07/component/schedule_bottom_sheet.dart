@@ -43,5 +43,53 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
         Navigator.of(context).pop();
       }
     }
+
+    String? timeValidator(String? val) { // 1 시간 검증 함수
+      if (val == null) {
+        return '값을 입력해주세요';
+      }
+
+      int? number;
+
+      try {
+        number = int.parse(val);
+      } catch (e) {
+        return '숫자를 입력해주세요';
+      }
+
+      if (number < 0 || number > 24) {
+        return '0시부터 24시 사이를 입력해주세요';
+      }
+
+      return null;
+    }
+
+    String? contentValidator(String? val) { // 2 내용 검증 함수
+      if (val == null || val.length == 0) {
+        return '값을 입력해주세요';
+      }
+
+      return null;
+    }
+
+    return Form(
+      key: formKey,
+      child: SafeArea(
+        child: Container(
+          height: MediaQuery.of(context).size.height / 2 + bottomInset,
+          color: Colors.white,
+          child: Padding(
+            padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: bottomInset),
+            child: Column(
+              children: [
+                Row(
+                  
+                )
+              ]
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
