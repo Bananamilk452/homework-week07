@@ -63,6 +63,5 @@ class MainCalendar extends StatelessWidget {
         ),
       ),
     );
-    );
   }
 }
