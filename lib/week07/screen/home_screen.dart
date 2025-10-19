@@ -39,4 +39,29 @@ class _HomeScreenState extends State<HomeScreen> {
             isScrollControlled: true,
           );
         },
-        
+                child: Icon(
+          Icons.add,
+        ),
+      ),
+      body: SafeArea( // 시스템 UI 피해서 UI 구현하기
+        child: Column( // 달력과 리스트를 새로로 배치
+          children: [
+            // 미리 작업해둔 달력 위젯 보여주기
+            MainCalendar(
+              selectedDate: selectedDate, // 선택된 날짜 전달하기
+            
+              // 날짜가 선택됐을 때 실행할 함수
+              onDaySelected: onDaySelected,
+            ),
+            SizedBox(height: 8.0),
+            StreamBuilder<List<Schedule>>( // 1 일정 Stream으로 받아오기
+              stream: GetIt.I<LocalDatabase>().watchSchedules(selectedDate),
+              builder: (context, snapshot) {
+                return TodayBanner(
+                  selectedDate: selectedDate,
+                  count: snapshot.data?.length ?? 0,
+                );
+              },
+            ),
+            SizedBox(height: 8.0),
+            
