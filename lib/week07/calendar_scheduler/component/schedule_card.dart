@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/week07/const/colors.dart';
+import 'package:myapp/week07/calendar_scheduler/const/colors.dart';
 
 class ScheduleCard extends StatelessWidget {
   final int startTime;
